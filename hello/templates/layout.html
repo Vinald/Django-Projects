@@ -1,14 +1,21 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    {% if title %}
+    <head>
+        <meta charset="UTF-8" />
+        {% if title %}
         <title>Hello | {{ title }}</title>
-    {% else %}
+        {% else %}
         <title>Hello</title>
-    {% endif %}
-</head>
-<body>
-    {% block content %}{% endblock %}
-</body>
+        {% endif %}
+<!--        bootstrap css link-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+<!--        custom css styles link -->
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
+    </head>
+    <body>
+        {% block content %}
+        {% endblock %}
+    </body>
 </html>
