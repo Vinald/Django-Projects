@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.template.defaultfilters import title
 
 POSTS = [
     {
@@ -22,8 +23,11 @@ POSTS = [
 ]
 
 def home(request):
-    return render(request, 'blog/home.html')
+    context = {
+        'posts': POSTS
+    }
+    return render(request, 'blog/home.html', context, title('Home'))
 
 
 def about(request):
-    return render(request, 'blog/about.html')
+    return render(request, 'blog/about.html', {'title': 'About'})
