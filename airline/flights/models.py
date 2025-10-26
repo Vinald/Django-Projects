@@ -20,3 +20,13 @@ class Flight(models.Model):
 
     def __str__(self):
         return f"{self.flight_number}: {self.departure} to {self.arrival}"
+
+
+class Passenger(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    email = models.EmailField(unique=True)
+    flights = models.ManyToManyField(Flight, related_name='passengers')
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name} ({self.email})"

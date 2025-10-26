@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Flight list</title>
-</head>
-<body>
-    <h1>Flight list</h1>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+   <div class="container">
+        <h1>Flight List</h1>
+        {% if flights %}
+            {% for flight in flights %}
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Flight {{ flight.flight_number }}</h5>
+                            <p class="card-text">
+                                Origin: {{ flight.departure }}<br>
+                                Destination: {{ flight.arrival }}<br>
+                                Departure Time: {{ flight.departure_time }}<br>
+                                Arrival Time: {{ flight.arrival_time }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No flights available.</p>
+        {% endif %}
+   </div>
+{% endblock %}
