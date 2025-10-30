@@ -19,7 +19,12 @@ challenges_monthly = {
 
 # Create your views here.
 def challenges(request):
-    return render(request, 'challenges/challenges.html')
+    '''This function returns the main challenges page'''
+    month_list = list(challenges_monthly.keys())
+    context = {
+        'months': month_list
+    }
+    return render(request, 'challenges/challenges.html', context)
 
 
 def challenge_by_number(request, month: int):
@@ -31,7 +36,7 @@ def challenge_by_number(request, month: int):
         return render(request, '404.html', status=404)
 
     redirect_month = months[month - 1]
-    redirect_path = reverse('challenge ', args=[redirect_month])
+    redirect_path = reverse('challenge', args=[redirect_month])
 
     return HttpResponseRedirect(redirect_path)
 
