@@ -41,11 +41,12 @@ def challenge_by_number(request, month: int):
 
 
 def challenge(request, month: str):
-    """This function returns the monthly challenge for the given month"""
+    """This function returns the monthly challenge page"""
 
-    month = month.lower()  # Convert month to lowercase to handle case insensitivity
     try:
-        challenge_txt = challenges_monthly[month]
-        return render(request, "challenges/challenge.html", {"text": challenge_txt})
+        text = challenges_monthly[month]
+        context = {"month": month, "text": text}
+        return render(request, "challenges/challenge.html", context)
     except KeyError:
         return render(request, "404.html", status=404)
+
